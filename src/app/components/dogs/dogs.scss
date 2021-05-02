@@ -13,6 +13,10 @@
     padding-bottom: $size-15;
 }
 
+.div-breed-selects {
+    min-height: 100px;
+}
+
 .div-select-component {
     width: 45%;
     float: left;
@@ -28,16 +32,12 @@
     }
 }
 
-.div-image-dog {
-    @include set-size(300px, 25%);
-}
-
 .photos-dogs {
-    margin-top: 50px;
+    position: absolute;
 
     .div-image-dog {
-        @include set-size(150px, 30%);
-        margin: 15px;
+        @include set-size(200px, 45%);
+        margin: 20px;
         float: left;
         text-align: center;
         img {

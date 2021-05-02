@@ -73,25 +73,29 @@ export default function Dogs() {
 
     return (
         <React.Fragment>
-            <div id="div-title-card-dogs"> Dogs </div>
-            <div id="div-info-text-card-dogs">Selecciona la raza de perro de la que deseas visualizar las imagenes.</div>
-            <div class="div-select-component">
-                <SelectComponent
-                    id="breed-select-component"
-                    label="Raza"
-                    options={dogs ? dogs.map((el, index) => ({ label: el[0], value: index })) : []}
-                    onChange={onChangeBreed}
-                />
-            </div>
-            <div class="div-select-component">
-                {breed && breed[1].length > 0 && (<SelectComponent
-                    id="type-breed-select-component"
-                    label="Tipo"
-                    options={breed ? breed[1].map((el) => ({ label: el, value: el })) : []}
-                    onChange={onChangeTypeBreed}
-                />)}
-            </div>
+            <div id="dog-card">
 
+                <div id="div-title-card-dogs"> Dogs </div>
+                <div id="div-info-text-card-dogs">Selecciona la raza de perro de la que deseas visualizar las imagenes.</div>
+                <div className="div-breed-selects">
+                    <div className="div-select-component">
+                        <SelectComponent
+                            id="breed-select-component"
+                            label="Raza"
+                            options={dogs ? dogs.map((el, index) => ({ label: el[0], value: index })) : []}
+                            onChange={onChangeBreed}
+                        />
+                    </div>
+                    <div className="div-select-component">
+                        {breed && breed[1].length > 0 && (<SelectComponent
+                            id="type-breed-select-component"
+                            label="Tipo"
+                            options={breed ? breed[1].map((el) => ({ label: el, value: el })) : []}
+                            onChange={onChangeTypeBreed}
+                        />)}
+                    </div>
+                </div>
+            </div>
             {photosDogs && (
                 <div class="photos-dogs">
                     {renderPhotosDogs()}

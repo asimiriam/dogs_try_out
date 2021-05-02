@@ -5,12 +5,10 @@ import './app.scss';
 
 function App() {
   return (
-    <div className="app">
+    <React.Fragment>
       <Header className="app-header" />
-      <div id="dog-card">
-        <Dogs />
-      </div>
-    </div>
+      <Dogs />
+    </React.Fragment>
   );
 }
 

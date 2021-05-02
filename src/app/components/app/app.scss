@@ -1,19 +1,12 @@
 @import '../css/index.scss';
 
-.app {
-  height: 100%;
-  overflow: auto;
-  text-align: left;
-
   #dog-card {
-    height: 80%;
+    height: max-content;
     padding: 30px;
     margin: 50px;
     background-color: $color-grey; 
     border-radius: 5px;
-    overflow: auto;
   }
-}
 
 .app-header {
   height: 150px;
