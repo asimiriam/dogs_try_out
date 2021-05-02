@@ -1,0 +1,15 @@
+@import '../css/index.scss';
+
+.header {
+    height: 60px;
+    background-color: $color-blue;
+    padding: 0;
+}
+
+.title {
+    @include set-font(400, $size-26);
+    color: $color-white;
+    line-height: 1.125;
+    word-break: break-word;
+    padding: $size-10;
+}

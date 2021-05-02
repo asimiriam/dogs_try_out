@@ -1,0 +1,29 @@
+@mixin set-font ($weight, $size) {
+    font-weight: $weight;
+    font-size: $size;
+}
+
+@mixin set-size ($height, $weight) {
+    height: $height;
+    width: $weight;
+}
+
+@mixin set-position ($position: null, $top: null, $bot: null, $right: null, $left: null) {
+    @if ($position) {
+        position: $position;
+    } @else {
+        position: absolute;
+    }
+    @if ($top) {
+        top: $top;
+    }
+    @if ($bot) {
+        bottom: $bot;
+    }
+    @if ($right) {
+        right: $right;
+    }
+    @if ($left) {
+        left: $left;
+    }
+}

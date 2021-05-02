@@ -1,0 +1,16 @@
+@import 'colors';
+@import 'mixins';
+
+.base-font {
+    color: $color-black;
+}
+
+.base-font-normal {
+    @extend .base-font;
+    font-weight: normal;
+}
+
+.base-font-bold {
+    @extend .base-font;
+    font-weight: bold;
+}

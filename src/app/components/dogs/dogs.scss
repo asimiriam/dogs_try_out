@@ -1,0 +1,47 @@
+@import '../css/index.scss';
+
+#div-title-card-dogs {
+    @extend .base-font-bold;
+    font-size: $size-20;
+    padding-bottom: $size-15;
+    text-align: center;
+}
+
+#div-info-text-card-dogs {
+    font-style: italic;
+    font-size: $size-12;
+    padding-bottom: $size-15;
+}
+
+.div-select-component {
+    width: 45%;
+    float: left;
+    #breed-select-component, #type-breed-select-component {
+        text-align: left;
+        width: 100%;
+        padding-right: $size-10;
+        .div-label-select {
+            @extend .base-font-bold;
+            font-size: $size-16;
+            padding-bottom: $size-10;
+        }
+    }
+}
+
+.div-image-dog {
+    @include set-size(300px, 25%);
+}
+
+.photos-dogs {
+    margin-top: 50px;
+
+    .div-image-dog {
+        @include set-size(150px, 30%);
+        margin: 15px;
+        float: left;
+        text-align: center;
+        img {
+            @include set-size(100%, auto);
+        }
+    }
+}
