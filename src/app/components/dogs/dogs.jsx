@@ -16,7 +16,6 @@ export default function Dogs() {
     const getDogs = () => {
         setLoading(true);
         DogsServices.getBreedsDogs().then((result) => {
-            console.log(result);
             setDogs(Object.entries(result.message));
             setLoading(false);
         }).catch((error) => {
@@ -29,7 +28,6 @@ export default function Dogs() {
     const getPhotosDogs = (dataBreed) => {
         setLoading(true);
         DogsServices.getPhotosBreed(dataBreed).then((result) => {
-            console.log(result);
             setPhotosDogs(result.message);
             setLoading(false);
         }).catch((error) => {
@@ -58,11 +56,9 @@ export default function Dogs() {
     const onChangeBreed = (breedSeleted) => {
         setPhotosDogs([]);
         const dogSelected = dogs[breedSeleted.value];
+        setBreed(dogSelected);
         if (dogSelected[1].length === 0) {
             getPhotosDogs(dogSelected[0]);
-        } else {
-            setBreed(dogSelected);
-            console.log(breed);
         }
     }
 

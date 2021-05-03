@@ -36,8 +36,8 @@
     position: absolute;
 
     .div-image-dog {
-        @include set-size(200px, 45%);
-        margin: 20px;
+        @include set-size(280px, 50%);
+        margin: 20px 0;
         float: left;
         text-align: center;
         img {
@@ -45,3 +45,18 @@
         }
     }
 }
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .div-image-dog {
+        @include set-size( 160px !important, 100% !important );
+    }
+
+    .div-select-component {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .div-image-dog {
+        @include set-size( 180px !important, 50% !important );
+    }
+  }
