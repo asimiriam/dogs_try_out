@@ -45,6 +45,21 @@
         }
     }
 }
+
+.ReactToast {
+    background: #ffa9b4;
+    border-radius: 2px;
+
+    .ReactToast--title {
+        font-size: $size-20;
+        text-transform: capitalize;
+    }
+
+    .ReactToast--description, .ReactToast p {
+        font-size: $size-12;
+    }
+}
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .div-image-dog {
         @include set-size( 160px !important, 100% !important );

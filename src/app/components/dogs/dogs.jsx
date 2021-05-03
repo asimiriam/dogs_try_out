@@ -1,15 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DogsServices from '../../service/dogsServices';
 import SelectComponent from '../common/selectComponent';
+import Loader from 'react-loader-spinner';
+import Toast from 'react-toast-component';
+import { setToastMessage, setIsOpen, setBreed, setPhotosDogs} from '../../slice';
 
 import './dogs.scss';
 
 export default function Dogs() {
+    const {titleToast, messageToast, isOpen} = useSelector(store => store.toast);
+    const {breed, photosDogs} = useSelector(store => store.dogs);
+
     const [loading, setLoading] = useState(false);
     const [dogs, setDogs] = useState([]);
-    const [breed, setBreed] = useState(null);
-    const [photosDogs, setPhotosDogs] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -19,8 +23,11 @@ export default function Dogs() {
             setDogs(Object.entries(result.message));
             setLoading(false);
         }).catch((error) => {
-            const errorMessage = error.responseJSON
-                ? error.responseJSON.error_message : error.statusText;
+            dispatch(setToastMessage({
+                title: error.responseJSON.status,
+                message: error.responseJSON.message
+            }));
+            dispatch(setIsOpen(true));
             setLoading(false);
         });
     }
@@ -28,11 +35,14 @@ export default function Dogs() {
     const getPhotosDogs = (dataBreed) => {
         setLoading(true);
         DogsServices.getPhotosBreed(dataBreed).then((result) => {
-            setPhotosDogs(result.message);
+            dispatch(setPhotosDogs(result.message));
             setLoading(false);
         }).catch((error) => {
-            const errorMessage = error.responseJSON
-                ? error.responseJSON.error_message : error.statusText;
+            dispatch(setToastMessage({
+                title: error.responseJSON.status,
+                message: error.responseJSON.message
+            }));
+            dispatch(setIsOpen(true));
             setLoading(false);
         });
     }
@@ -45,7 +55,7 @@ export default function Dogs() {
     const renderPhotosDogs = () => {
         const list = photosDogs.map((photo, index) => {
             return (
-                <div class="div-image-dog">
+                <div className="div-image-dog">
                     <img src={photo} alt={`dog-${index}`} />
                 </div>
             );
@@ -54,9 +64,9 @@ export default function Dogs() {
     };
 
     const onChangeBreed = (breedSeleted) => {
-        setPhotosDogs([]);
+        dispatch(setPhotosDogs([]));
         const dogSelected = dogs[breedSeleted.value];
-        setBreed(dogSelected);
+        dispatch(setBreed(dogSelected));
         if (dogSelected[1].length === 0) {
             getPhotosDogs(dogSelected[0]);
         }
@@ -67,10 +77,23 @@ export default function Dogs() {
         getPhotosDogs(dataBreed);
     }
 
+    const closeToastMessage = () => {
+        dispatch(setIsOpen(false));
+    }
+
     return (
         <React.Fragment>
-            <div id="dog-card">
+            <Toast
+                isOpen={isOpen}
+                hasCloseBtn
+                closeCallback={closeToastMessage}
+                description={messageToast}
+                title={titleToast}
+                duration={10000}
+                classNames={['error']}
+            />
 
+            <div id="dog-card">
                 <div id="div-title-card-dogs"> Dogs </div>
                 <div id="div-info-text-card-dogs">Selecciona la raza de perro de la que deseas visualizar las imagenes.</div>
                 <div className="div-breed-selects">
@@ -93,15 +116,17 @@ export default function Dogs() {
                 </div>
             </div>
             {photosDogs && (
-                <div class="photos-dogs">
+                <div className="photos-dogs">
                     {renderPhotosDogs()}
                 </div>
             )}
-
-            {/* <Spinner
-                textSpinner={'Loading ...'}
-                loading={loading}
-            /> */}
+            <Loader
+                type="Oval"
+                color="#2E4053"
+                height={80}
+                width={80}
+                visible={loading}
+            />
         </React.Fragment>
     );
 }
