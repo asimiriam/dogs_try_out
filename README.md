@@ -1,3 +1,4 @@
+## Descripción
 Este proyecto consiste en un pequeño buscador de imágenes en función de una raza seleccionada mediante un select. Si la raza tiene diferentes tipos, además se tendrá que seleccionar el tipo correspondiente.
 
 Esta aplicación está implementada con react, redux y sass. Es una aplicación multilenguaje y además se ha realizado de forma responsive para su correcta visualización en dispositivos pequeños como móviles o tablets.
