@@ -12,4 +12,26 @@
     line-height: 1.125;
     word-break: break-word;
     padding: $size-10;
+    text-align: left;
+    width: 47%;
+    float: left;
 }
+
+.lang-buttons {
+    text-align: right;
+
+    .lang-btn {
+        border-radius: 10%;
+        border: 1px solid $color-white-05;
+        color: $color-white-05;
+        background-color: transparent;
+        margin: 5px;
+    }
+
+    .lang-btn-active {
+        border: 2px solid $color-white;
+        font-weight: bold;
+        color: $color-white;
+    }
+}
+

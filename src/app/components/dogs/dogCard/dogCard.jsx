@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import DogsServices from '../../../service/dogsServices';
 import SelectComponent from '../../common/selectComponent';
-import { setToastMessage, setIsOpen, setBreed, setPhotosDogs} from '../../../slice';
+import { setToastMessage, setIsOpen, setBreed, setPhotosDogs } from '../../../slice';
+import { tr } from '../../common/lang';
 
 import './dogCard.scss';
 
 export default function DogCard() {
-    const {breed} = useSelector(store => store.dogs);
+    const { breed } = useSelector(store => store.dogs);
+    const { lang } = useSelector(store => store.lang);
     const [loading, setLoading] = useState(false);
     const [dogs, setDogs] = useState([]);
 
@@ -66,23 +68,25 @@ export default function DogCard() {
     return (
         <React.Fragment>
             <div id="dog-card">
-                <div id="div-title-card-dogs"> Dogs </div>
-                <div id="div-info-text-card-dogs">Selecciona la raza de perro de la que deseas visualizar las imagenes.</div>
+                <div id="div-title-card-dogs"> {tr("Dogs", lang)} </div>
+                <div id="div-info-text-card-dogs"> {tr("TextInfo", lang)}</div>
                 <div className="div-breed-selects">
                     <div className="div-select-component">
                         <SelectComponent
                             id="breed-select-component"
-                            label="Raza"
+                            label={tr("Breed", lang)}
                             options={dogs ? dogs.map((el, index) => ({ label: el[0], value: index })) : []}
                             onChange={onChangeBreed}
+                            placeholder={tr("Select a breed", lang)}
                         />
                     </div>
                     <div className="div-select-component">
                         {breed && breed[1].length > 0 && (<SelectComponent
                             id="type-breed-select-component"
-                            label="Tipo"
+                            label={tr("Type", lang)}
                             options={breed ? breed[1].map((el) => ({ label: el, value: el })) : []}
                             onChange={onChangeTypeBreed}
+                            placeholder={tr("Select a type", lang)}
                         />)}
                     </div>
                 </div>

@@ -8,6 +8,10 @@ import {
     setPhotosDogs,
 } from './dogsSlice';
 
+import {
+    setLang
+} from './langSlice';
+
 import rootSlice from './rootSlice';
 
 export {
@@ -15,6 +19,7 @@ export {
     setIsOpen,
     setBreed,
     setPhotosDogs,
+    setLang,
 };
 
 export default rootSlice;
